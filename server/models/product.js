@@ -29,6 +29,10 @@ const productSchema = new mongoose.Schema(
         quantity: {
             type: Number,
         },
+        sold: {
+            type: Number,
+            default: 0,
+        },
         photo: {
             data: Buffer,
             contentType: String,
@@ -40,5 +44,12 @@ const productSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+
+/**
+ * sell / arrival
+ * by sell = /products?sortBy=sold&order=desc&limit=4
+ * by arrival = /products?sortBy=createdAt&order=desc&limit=4
+ * if no params are sent, then all products are returned
+ */
 
 module.exports = mongoose.model("Product", productSchema);
