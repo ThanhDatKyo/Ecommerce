@@ -1,39 +1,39 @@
 const express = require("express");
 const router = express.Router();
 const {
-    signup,
-    signin,
-    signout,
-    requireSignin,
-    isAuth,
-    isAdmin,
+	signup,
+	signin,
+	signout,
+	requireSignin,
+	isAuth,
+	isAdmin,
 } = require("../controllers/auth");
 const { getUserById, readUser, updateUser } = require("../controllers/user");
 const {
-    createCategory,
-    getCategoryById,
-    readCategory,
-    updateCategory,
-    deleteCategory,
-    getAllCategory,
+	createCategory,
+	getCategoryById,
+	readCategory,
+	updateCategory,
+	deleteCategory,
+	getAllCategory,
 } = require("../controllers/category");
 const {
-    createProduct,
-    getProductById,
-    getAllProduct,
-    readProduct,
-    updateProduct,
-    deleteProduct,
-    listRelatedProduct,
-    listCategories,
-    listProductBySearch,
-    photoProduct,
+	createProduct,
+	getProductById,
+	getAllProduct,
+	readProduct,
+	updateProduct,
+	deleteProduct,
+	listRelatedProduct,
+	listCategories,
+	listProductBySearch,
+	photoProduct,
 } = require("../controllers/product");
 
 const { userSignupValidator } = require("../validator");
 
 router.get("/hello", requireSignin, (req, res) => {
-    res.send("hello there");
+	res.send("hello there");
 });
 
 /* ---------------- 
@@ -48,7 +48,7 @@ router.get("/signout", signout);
 -------------------*/
 router.param("userId", getUserById);
 router.get("/secret/:userId", requireSignin, isAuth, isAdmin, (req, res) => {
-    res.json({ user: req.profile });
+	res.json({ user: req.profile });
 });
 router.get("/user/:userId", requireSignin, isAuth, readUser);
 router.put("/user/:userId", requireSignin, isAuth, updateUser);
@@ -57,28 +57,28 @@ router.put("/user/:userId", requireSignin, isAuth, updateUser);
         CATEGORY 
 -------------------*/
 router.post(
-    "/category/create/:userId",
-    requireSignin,
-    isAuth,
-    isAdmin,
-    createCategory
+	"/category/create/:userId",
+	requireSignin,
+	isAuth,
+	isAdmin,
+	createCategory
 );
 router.param("categoryId", getCategoryById);
 router.get("/category/:categoryId", readCategory);
 router.get("/categories", getAllCategory);
 router.put(
-    "/category/:categoryId/:userId",
-    requireSignin,
-    isAuth,
-    isAdmin,
-    updateCategory
+	"/category/:categoryId/:userId",
+	requireSignin,
+	isAuth,
+	isAdmin,
+	updateCategory
 );
 router.delete(
-    "/category/:categoryId/:userId",
-    requireSignin,
-    isAuth,
-    isAdmin,
-    deleteCategory
+	"/category/:categoryId/:userId",
+	requireSignin,
+	isAuth,
+	isAdmin,
+	deleteCategory
 );
 
 /* ---------------- 
@@ -86,11 +86,11 @@ router.delete(
 -------------------*/
 router.param("productId", getProductById);
 router.post(
-    "/product/create/:userId",
-    requireSignin,
-    isAuth,
-    isAdmin,
-    createProduct
+	"/product/create/:userId",
+	requireSignin,
+	isAuth,
+	isAdmin,
+	createProduct
 );
 router.post("/products/by/search", listProductBySearch);
 router.get("/product/:productId", readProduct);
@@ -99,18 +99,18 @@ router.get("/products/related/:productId", listRelatedProduct);
 router.get("/products", getAllProduct);
 router.get("/products/categories", listCategories);
 router.put(
-    "/product/:productId/:userId",
-    requireSignin,
-    isAuth,
-    isAdmin,
-    updateProduct
+	"/product/:productId/:userId",
+	requireSignin,
+	isAuth,
+	isAdmin,
+	updateProduct
 );
 router.delete(
-    "/product/:productId/:userId",
-    requireSignin,
-    isAuth,
-    isAdmin,
-    deleteProduct
+	"/product/:productId/:userId",
+	requireSignin,
+	isAuth,
+	isAdmin,
+	deleteProduct
 );
 
 module.exports = router;

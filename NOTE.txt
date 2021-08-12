@@ -1,0 +1,71 @@
+/*-------------------------------
+	1 SỐ LƯU Ý TRONG EXPRESSJS AND MONGODB
+----------------------------------*/
+1./ router.param() function expressjs
+The parameters of router.param() are name and a function. Where name is the actual name of parameter
+ and function is the callback function. Basically router.param() function triggers the callback 
+ function whenever user routes to the parameter. This callback function will be called for only 
+ single time in request response cycle, even if user routes to the parameter multiple times.
+-> Link reference: https://www.geeksforgeeks.org/express-js-router-param-function/
+
+2./ exec() in mongodb
+- Sẽ trả lại một lời hứa nếu không có cuộc gọi lại nào được cung cấp. Vì vậy, mẫu sau rất thuận tiện và chung chung - nó có thể xử lý các lệnh gọi lại hoặc lời hứa một cách độc đáo:
+
+
+---------------------------------------------------------------------------------------
+1./ Crypto
+- Source Code: lib/crypto.js
+- The crypto module provides cryptographic functionality that includes a set of wrappers for OpenSSL's hash, HMAC, cipher, decipher, sign, and verify functions.
+- Các crypto module là một wrapper cho OpenSSL chức năng mã hóa. Nó hỗ trợ tính toán hàm băm, xác thực với HMAC, mật mã và hơn thế nữa!	
+- Module này đã được cài sẵn trên nodejs.
+- Install:  npm install crypto
+
+2./ Cookie-parser
+- Cookie parser là một thằng trung gian hay gọi là middleware trong Expressjs được sử dụng để phân tích cú pháp cookie và cũng là một phần mềm trung gian phổ biến khi những lập trình viên khởi tạo dự án sử dụng nodejs và expressjs.
+- Nó hoạt động bằng cách tạo HMAC của giá trị (cookie hiện tại) và base64 đã mã hóa nó.
+- Hashed Message Authentication Code (HMAC) là Băm Message Authentication Code (HMAC).
+- Install: npm i cookie-parser --save
+
+function findAll(query, populate, cb) {
+
+  let q = Response.find(query);
+
+  if (populate && populate.length > 0) {
+    q = q.populate(populate);
+  }
+
+  // cb is optional, will return promise if cb == null
+  return q.lean().exec(cb);
+
+}
+
+-------------------------------------------------------------------------------------------
+
+NodeJS đã xây dựng sẵn khá nhiều Module, nó các các thư viện chuẩn để bạn phát triển ứng dụng. Dưới đây là danh sách:
+Module |	    Description
+assert	        Cung cấp tập hợp các assertion tests (Kiểm tra khẳng định)
+buffer	        Để xử lý các dữ liệu nhị phân (binary data).
+child_process	Để chạy một tiến trình con (child process)
+cluster	        Để tách một tiến trình (process) thành nhiều tiến trình.
+crypto	        Chứa các hàm mã hóa OpenSSL (OpenSSL cryptographic functions)
+dgram	        Cung cấp các thực hiện (implementation) cho UDP sockets
+dns	            Cung cấp các chức năng để tìm kiếm (lookups) và phân giải (resolution) DNS.
+events	        Để xử lý các sự kiện (events)
+fs	            Để xử lý file system
+http	        Để làm cho Node.js hoạt động như một HTTP server.
+https	        Để làm cho Node.js hoạt động như một HTTPS server.
+net	            Để tạo các server và các client.
+os	            Cung cấp các thông tin về hệ điều hành.
+path	        Để xử lý các đường dẫn file (file paths).
+querystring	    Để xử lý URL query strings
+readline	    Để xử lý các luồng dữ liệu (data streams) mà có thể đọc từng dòng (line) dữ liệu.
+stream	        Xử lý các luồng dữ liệu (streaming data)
+string_decoder	Để giải mã (decode) đối tượng bộ đệm (buffer objects) thành string
+timers	        Hẹn giờ để thực thi một hàm Javascript.
+tls	            Để thực hiện các giao thức TLS & SSL.
+tty	            Cung cấp các lớp được sử dụng bởi text terminal.
+url	            Giúp phân tích (parse) các chuỗi URL (URL strings)
+util	        Cung cấp các hàm tiện ích (Utility functions).
+v8	            Truy cập vào các thông tin của V8 JavaScript engine.
+vm	            Biên dịch (compile) mã JavaScript trong máy ảo (Virtual machine)
+zlib	        Xử lý nén và giải nén các tập tin.
